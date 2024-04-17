@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Seller {
+  id               Int         @id @default(autoincrement())
+  role             String      @default("seller")
+  email            String      @unique
+  userName         String
+  password         String
+  credits          Int         @default(0)
+  owned_billboards Billboard[] @relation(name: "OwnedBillboards")
+}
+
+model User {
+  id                Int         @id @default(autoincrement())
+  role              String      @default("user")
+  email             String      @unique
+  userName          String
+  password          String
+  credits           Int         @default(1000)
+  rented_billboards Billboard[] @relation(name: "RentedBillboards")
+}
+
+model Billboard {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  category    String
+  size        String
+  price_per_day Int @default(0)
+  updatedAt   DateTime @updatedAt
+  rating      Int      @default(0)
+  location    String   @default("")
+  title       String
+  description String   @default("")
+  owner       Seller   @relation(name: "OwnedBillboards", fields: [ownerId], references: [id])
+  ownerId     Int
+  rented_by   User?    @relation(name: "RentedBillboards", fields: [renterId], references: [id])
+  renterId    Int?
+}

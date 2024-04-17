@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Seller" ADD COLUMN     "credits" INTEGER NOT NULL DEFAULT 0;
+
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "credits" INTEGER NOT NULL DEFAULT 1000;

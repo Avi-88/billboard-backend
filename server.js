@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import UserRouter from "./routes/user.js";
 import PostRouter from "./routes/post.js";
+import { tokenBucketLimiter } from "./middleware/token-bucket.js";
 
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+
 
 app.use("/healthCheck", (req, res) => {
   res.status(200).json("The server is up and running :)");

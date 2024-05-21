@@ -81,8 +81,8 @@ export const loginUser = async (req, res) => {
 
 export const getUserdetails = async (req, res) => {
   try {
-    const userId = Number(req.params.userId);
-    const role = req.params.role;
+    const userId = Number(req.query.userId);
+    const role = req.query.role;
 
     let user_model;
     switch (role) {

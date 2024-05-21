@@ -14,13 +14,14 @@ export const addPost = async (req, res) => {
     const {
       title,
       description,
-      userId,
-      rating,
       location,
       category,
-      size,
-      price_per_day,
+      size
     } = req.body;
+
+    const rating = Number(req.body.rating);
+    const userId = Number(req.body.userId);
+    const price_per_day = Number(req.body.price_per_day);
 
     const payload = {
       title,
@@ -51,6 +52,21 @@ export const getAllPosts = async (req, res) => {
     res
       .status(200)
       .json(new Success("Successfully fetched all posts", postList));
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(new Error("Failed to fetch posts"));
+  }
+};
+
+export const getPostById = async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+
+    let postInfo = await fetchPostById(id);
+
+    res
+      .status(200)
+      .json(new Success("Successfully fetched all posts", postInfo));
   } catch (error) {
     console.log(error);
     res.status(500).json(new Error("Failed to fetch posts"));

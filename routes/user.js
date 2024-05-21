@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-router.get("/userDetails/:userId",getUserdetails)
+router.get("/userDetails",getUserdetails)
 router.put("/updateuser/:userId",editUser)
 export default router;

@@ -38,7 +38,6 @@ const fetchALLPosts = async (searchTerm) => {
   try {
     const billboardsQuery = {
       where: {
-        rented_by: null,
         OR: [
           { title: { contains: searchTerm, mode: "insensitive" } },
           { location: { contains: searchTerm, mode: "insensitive" } },

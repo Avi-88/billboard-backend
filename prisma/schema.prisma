@@ -32,9 +32,11 @@ model Billboard {
   createdAt   DateTime @default(now())
   category    String
   size        String
+  img_url     String?
+  next_available_date  String?
   price_per_day Int @default(0)
   updatedAt   DateTime @updatedAt
-  rating      Int      @default(0)
+  rating      Float      @default(0)
   location    String   @default("")
   title       String
   description String   @default("")
